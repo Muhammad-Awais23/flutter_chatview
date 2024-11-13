@@ -23,6 +23,7 @@ import 'package:flutter/material.dart';
 
 import 'package:chatview/src/extensions/extensions.dart';
 import 'package:chatview/src/models/models.dart';
+import 'package:flutter/widgets.dart';
 
 import '../utils/constants/constants.dart';
 import 'link_preview.dart';
@@ -37,6 +38,7 @@ class TextMessageView extends StatelessWidget {
     this.inComingChatBubbleConfig,
     this.outgoingChatBubbleConfig,
     this.messageReactionConfig,
+    this.incomingBorderColor,
     this.highlightMessage = false,
     this.highlightColor,
   }) : super(key: key);
@@ -61,6 +63,7 @@ class TextMessageView extends StatelessWidget {
 
   /// Represents message should highlight.
   final bool highlightMessage;
+  final Color? incomingBorderColor;
 
   /// Allow user to set color of highlighted message.
   final Color? highlightColor;
@@ -85,9 +88,10 @@ class TextMessageView extends StatelessWidget {
               EdgeInsets.fromLTRB(
                   5, 0, 6, message.reaction.reactions.isNotEmpty ? 15 : 2),
           decoration: BoxDecoration(
-            color: highlightMessage ? highlightColor : _color,
-            borderRadius: _borderRadius(textMessage),
-          ),
+              color: highlightMessage ? highlightColor : _color,
+              borderRadius: _borderRadius(textMessage),
+              border: Border.all(
+                  color: incomingBorderColor ?? const Color(0x193A83F7))),
           child: textMessage.isUrl
               ? LinkPreview(
                   linkPreviewConfig: _linkPreviewConfig,
