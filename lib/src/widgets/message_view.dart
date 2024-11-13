@@ -43,6 +43,7 @@ class MessageView extends StatefulWidget {
     this.longPressAnimationDuration,
     this.onDoubleTap,
     this.highlightColor = Colors.grey,
+    this.incomingBorderColor = const Color(0x193A83F7),
     this.shouldHighlight = false,
     this.highlightScale = 1.2,
     this.messageConfig,
@@ -76,6 +77,7 @@ class MessageView extends StatefulWidget {
 
   /// Allow users to pass colour of chat bubble when user taps on replied message.
   final Color highlightColor;
+  final Color incomingBorderColor;
 
   /// Allow users to turn on/off highlighting chat bubble when user tap on replied message.
   final bool shouldHighlight;
@@ -218,6 +220,7 @@ class _MessageViewState extends State<MessageView>
                     messageReactionConfig: messageConfig?.messageReactionConfig,
                     highlightColor: widget.highlightColor,
                     highlightMessage: widget.shouldHighlight,
+                    incomingBorderColor: widget.incomingBorderColor,
                   );
                 } else if (widget.message.messageType.isVoice) {
                   return VoiceMessageView(
